@@ -62,10 +62,15 @@ public class Cart {
         return cartDetails;
     }
 
+//    public void setCartDetails(Set<CartDetail> cartDetails) {
+//        this.cartDetails = cartDetails;
+//    }
     public void setCartDetails(Set<CartDetail> cartDetails) {
-        this.cartDetails = cartDetails;
+    if (cartDetails != null) {
+        this.cartDetails.clear(); // Clear the current contents
+        this.cartDetails.addAll(cartDetails); // Add all elements from the provided set
+        }
     }
-
     public void setPurchased(boolean purchased) {
         this.purchased = purchased;
     }

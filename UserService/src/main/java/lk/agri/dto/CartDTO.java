@@ -55,4 +55,5 @@ public class CartDTO {
     public void setCartDetails(List<CartDetailDTO> cartDetails) {
         this.cartDetails = new ArrayList<>(cartDetails);
     }
+
 }
