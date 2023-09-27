@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.security.web.csrf.CsrfToken;
+
+import java.util.Random;
 
 @CrossOrigin
 @RestController
@@ -17,6 +20,12 @@ public class FarmerController {
     @Autowired
     private FarmerService itemService;
 
+    @GetMapping(value="/csrf-token")
+    public String getCsrfToken() {
+//        System.out.println(token);
+        String token=(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1);
+        return token;
+    }
     @PostMapping(value = "/addItem")
     public ResponseEntity addItem(@RequestPart("item") Item item, @RequestParam(value = "file", required = false) MultipartFile file) {
         return ResponseEntity.ok(itemService.addItem(item, file));

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
@@ -22,6 +24,13 @@ public class UserAccountServiceImpl implements UserAccountService {
         byte[] encodedBytes = Base64.encodeBase64(userAccount.getPassword().getBytes());
         userAccount.setPassword(new String(encodedBytes));
         UserAccount userAccountObj = userAccountRepository.findByEmailAndPassword(userAccount.getEmail(), userAccount.getPassword());
+        Optional<UserAccount> userUpdate= Optional.ofNullable(userAccountRepository.findByEmailAndPassword(userAccount.getEmail(), userAccount.getPassword()));
+        if (userUpdate !=null) {
+            UserAccount userObj = userUpdate.get();
+            String token=(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1);
+            userObj.setToken(token);
+            userAccountRepository.save(userObj);
+        }
         return new UserAccountDTO(userAccountObj);
     }
 

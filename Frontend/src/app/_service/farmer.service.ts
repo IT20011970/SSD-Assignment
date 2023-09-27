@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 
@@ -26,7 +26,15 @@ export class FarmerService {
   }
 
   getItems(): Observable<any> {
-    return this.http.get<any>(environment.backend_url3 + "/farmer/getItems/" + JSON.parse(localStorage.getItem('user')).email);
+    // Make the GET request with the custom headers
+    const headersToken = new HttpHeaders()
+      .set('X-CSRF-TOKEN', JSON.parse(localStorage.getItem('user')).token) // Replace with your header name and value
+      .set('USER', JSON.parse(localStorage.getItem('user')).email);
+    return this.http.get<any>(
+      environment.backend_url3 + "/farmer/getItems/" + JSON.parse(localStorage.getItem('user')).email,
+      { headers: headersToken }
+    );
+    // return this.http.get<any>(environment.backend_url3 + "/farmer/getItems/" + JSON.parse(localStorage.getItem('user')).email);
   }
   addChat(setItem: any): Observable<any>{
     console.log(setItem)
