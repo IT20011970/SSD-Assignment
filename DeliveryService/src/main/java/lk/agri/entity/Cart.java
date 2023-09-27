@@ -2,6 +2,7 @@ package lk.agri.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Set;
 
 @Entity
@@ -59,7 +60,7 @@ public class Cart {
     }
 
     public Set<CartDetail> getCartDetails() {
-        return cartDetails;
+        return Collections.unmodifiableSet(cartDetails);
     }
 
 //    public void setCartDetails(Set<CartDetail> cartDetails) {
