@@ -14,15 +14,24 @@ export class FarmerService {
   }
 
   addItem(item): Observable<any> {
-    return this.http.post<any>('http://localhost:8082' + "/farmer/addItem", item);
+    const headersToken = new HttpHeaders()
+      .set('X-CSRF-TOKEN', JSON.parse(localStorage.getItem('user')).token) // Replace with your header name and value
+      .set('USER', JSON.parse(localStorage.getItem('user')).email);
+    return this.http.post<any>('http://localhost:8082' + "/farmer/addItem", item,{ headers: headersToken });
   }
 
   updateItem(item, itemId): Observable<any> {
-    return this.http.put<any>('http://localhost:8082' + "/farmer/updateItem/" + itemId, item);
+    const headersToken = new HttpHeaders()
+      .set('X-CSRF-TOKEN', JSON.parse(localStorage.getItem('user')).token) // Replace with your header name and value
+      .set('USER', JSON.parse(localStorage.getItem('user')).email);
+    return this.http.put<any>('http://localhost:8082' + "/farmer/updateItem/" + itemId, item,{ headers: headersToken });
   }
 
   removeItem(itemId): Observable<any> {
-    return this.http.delete<any>(environment.backend_url3 + "/farmer/removeItem/" + itemId);
+    const headersToken = new HttpHeaders()
+      .set('X-CSRF-TOKEN', JSON.parse(localStorage.getItem('user')).token) // Replace with your header name and value
+      .set('USER', JSON.parse(localStorage.getItem('user')).email);
+    return this.http.delete<any>(environment.backend_url3 + "/farmer/removeItem/" + itemId,{ headers: headersToken });
   }
 
   getItems(): Observable<any> {
@@ -38,10 +47,16 @@ export class FarmerService {
   }
   addChat(setItem: any): Observable<any>{
     console.log(setItem)
-    return this.http.post(environment.backend_url3+ "/farmer/addChat", setItem);
+    const headersToken = new HttpHeaders()
+      .set('X-CSRF-TOKEN', JSON.parse(localStorage.getItem('user')).token) // Replace with your header name and value
+      .set('USER', JSON.parse(localStorage.getItem('user')).email);
+    return this.http.post(environment.backend_url3+ "/farmer/addChat",  setItem,{ headers: headersToken });
   }
   getAllChats(): Observable<any>{
-    return this.http.get<any>(environment.backend_url3 + "/farmer/getchat");
+    const headersToken = new HttpHeaders()
+      .set('X-CSRF-TOKEN', JSON.parse(localStorage.getItem('user')).token) // Replace with your header name and value
+      .set('USER', JSON.parse(localStorage.getItem('user')).email);
+    return this.http.get<any>(environment.backend_url3 + "/farmer/getchat",{ headers: headersToken });
   }
 
 }
