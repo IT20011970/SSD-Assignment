@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,17 @@ export class BuyerService {
   }
 
   getItems(txt): Observable<any> {
-    return this.http.get<any>(environment.backend_url2 + "/buyer/getItems/" + txt);
+    const headersToken = new HttpHeaders()
+      .set('X-CSRF-TOKEN', JSON.parse(localStorage.getItem('user')).token) // Replace with your header name and value
+      .set('USER', JSON.parse(localStorage.getItem('user')).email);
+    return this.http.get<any>(environment.backend_url2 + "/buyer/getItems/" + txt,{ headers: headersToken });
   }
 
   getDeliveries(): Observable<any> {
-    return this.http.get<any>(environment.backend_url4 + "/delivery/getDeliveries");
+    const headersToken = new HttpHeaders()
+      .set('X-CSRF-TOKEN', JSON.parse(localStorage.getItem('user')).token) // Replace with your header name and value
+      .set('USER', JSON.parse(localStorage.getItem('user')).email);
+    return this.http.get<any>(environment.backend_url4 + "/delivery/getDeliveries",{ headers: headersToken });
   }
 
   addToCart(cart) {
@@ -26,7 +32,10 @@ export class BuyerService {
   }
 
   getCart() {
-    return this.http.get<any>(environment.backend_url2 + "/buyer/getCart/" + JSON.parse(localStorage.getItem('user')).email);
+    const headersToken = new HttpHeaders()
+      .set('X-CSRF-TOKEN', JSON.parse(localStorage.getItem('user')).token) // Replace with your header name and value
+      .set('USER', JSON.parse(localStorage.getItem('user')).email);
+    return this.http.get<any>(environment.backend_url2 + "/buyer/getCart/" + JSON.parse(localStorage.getItem('user')).email,{ headers: headersToken });
   }
 
   addCart(cart) {

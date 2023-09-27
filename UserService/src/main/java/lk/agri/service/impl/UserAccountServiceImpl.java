@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
@@ -26,19 +26,17 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public UserAccountDTO login(UserAccount userAccount) {
-        try {
-            // Specify the character encoding (e.g., UTF-8)
-            String encoding = "UTF-8";
-
-            byte[] encodedBytes = Base64.encodeBase64(userAccount.getPassword().getBytes(encoding));
-            userAccount.setPassword(new String(encodedBytes, encoding));
-
-            UserAccount userAccountObj = userAccountRepository.findByEmailAndPassword(userAccount.getEmail(), userAccount.getPassword());
-            return new UserAccountDTO(userAccountObj);
-        } catch (UnsupportedEncodingException e) {
-            logger.error("An error occurred:", e);
-            return null; // or throw an exception
+        byte[] encodedBytes = Base64.encodeBase64(userAccount.getPassword().getBytes());
+        userAccount.setPassword(new String(encodedBytes));
+        UserAccount userAccountObj = userAccountRepository.findByEmailAndPassword(userAccount.getEmail(), userAccount.getPassword());
+        Optional<UserAccount> userUpdate= Optional.ofNullable(userAccountRepository.findByEmailAndPassword(userAccount.getEmail(), userAccount.getPassword()));
+        if (userUpdate !=null) {
+            UserAccount userObj = userUpdate.get();
+            String token=(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1);
+            userObj.setToken(token);
+            userAccountRepository.save(userObj);
         }
+        return new UserAccountDTO(userAccountObj);
     }
 
     @Override
