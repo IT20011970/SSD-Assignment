@@ -9,6 +9,7 @@ public class UserAccountDTO {
     private String contactNo;
     private String email;
     private String password;
+    private String token;
 
     public UserAccountDTO(UserAccount userAccount) {
         if (userAccount != null) {
@@ -17,8 +18,17 @@ public class UserAccountDTO {
             this.address = userAccount.getAddress();
             this.contactNo = userAccount.getContactNo();
             this.email = userAccount.getEmail();
+            this.token=userAccount.getToken();
         }
 //        this.password = userAccount.getPassword();
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getAccountType() {
