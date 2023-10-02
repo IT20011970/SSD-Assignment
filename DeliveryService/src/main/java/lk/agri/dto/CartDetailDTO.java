@@ -1,6 +1,7 @@
 package lk.agri.dto;
 
 import lk.agri.entity.CartDetail;
+import lk.agri.entity.Item;
 
 public class CartDetailDTO {
 
@@ -11,7 +12,7 @@ public class CartDetailDTO {
     public CartDetailDTO(CartDetail cartDetail) {
         this.cartDetailId = cartDetail.getCartDetailId();
         this.quantity = cartDetail.getQuantity();
-        this.item = new ItemDTO(cartDetail.getItem());
+        this.item = new ItemDTO(cartDetail.getItem());//this.item = new ItemDTO(cartDetail.getItem());
     }
 
     public String getCartDetailId() {

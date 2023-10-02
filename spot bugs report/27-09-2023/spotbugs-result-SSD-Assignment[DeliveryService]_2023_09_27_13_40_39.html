@@ -1,0 +1,368 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="UTF-8"/>
+      <title>SpotBugs Report</title>
+      <style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+		</style>
+   </head>
+   <body>
+      <h1>SpotBugs Report</h1>
+      <p>Produced using <a href="https://spotbugs.github.io">SpotBugs</a>4.4.2.</p>
+      <p>Project: 
+			SSD-Assignment[DeliveryService]</p>
+      <h2>Metrics</h2>
+      <p>381 lines of code analyzed,
+	in 14 classes, 
+	in 7 packages.</p>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Metric</th>
+            <th align="right">Total</th>
+            <th align="right">Density*</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>High Priority Warnings</td>
+            <td align="right"/>
+            <td align="right">NaN</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>Medium Priority Warnings</td>
+            <td align="right">16</td>
+            <td align="right">41.99</td>
+         </tr>
+         <tr class="$totalClass">
+            <td>
+               <b>Total Warnings</b>
+            </td>
+            <td align="right">
+               <b>16</b>
+            </td>
+            <td align="right">
+               <b>41.99</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <i>(* Defects per Thousand lines of non-commenting source statements)</i>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Summary</h2>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Warning Type</th>
+            <th align="right">Number</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+            </td>
+            <td align="right">16</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <b>Total</b>
+            </td>
+            <td align="right">
+               <b>16</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h1>Warnings</h1>
+      <p>Click on each warning link to see a full description of the issue, and
+	    details of how to resolve it.</p>
+      <h2>
+         <a name="Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.dto.CartDetailDTO.getItem() may expose internal representation by returning CartDetailDTO.item<br/>
+                  <br/>
+                  <br/>In file CartDetailDTO.java CartDetailDTO.java,
+					
+						line 35 35<br/>In class lk.agri.dto.CartDetailDTO<br/>In method lk.agri.dto.CartDetailDTO.getItem()<br/>Field lk.agri.dto.CartDetailDTO.item<br/>At CartDetailDTO.java:[line 35]<br/>At CartDetailDTO.java:[line 35]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.dto.ItemDTO.getUserAccount() may expose internal representation by returning ItemDTO.userAccount<br/>
+                  <br/>
+                  <br/>In file ItemDTO.java ItemDTO.java,
+					
+						line 29 29<br/>In class lk.agri.dto.ItemDTO<br/>In method lk.agri.dto.ItemDTO.getUserAccount()<br/>Field lk.agri.dto.ItemDTO.userAccount<br/>At ItemDTO.java:[line 29]<br/>At ItemDTO.java:[line 29]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.Cart.getDelivery() may expose internal representation by returning Cart.delivery<br/>
+                  <br/>
+                  <br/>In file Cart.java Cart.java,
+					
+						line 43 43<br/>In class lk.agri.entity.Cart<br/>In method lk.agri.entity.Cart.getDelivery()<br/>Field lk.agri.entity.Cart.delivery<br/>At Cart.java:[line 43]<br/>At Cart.java:[line 43]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.Cart.getUserAccount() may expose internal representation by returning Cart.userAccount<br/>
+                  <br/>
+                  <br/>In file Cart.java Cart.java,
+					
+						line 51 51<br/>In class lk.agri.entity.Cart<br/>In method lk.agri.entity.Cart.getUserAccount()<br/>Field lk.agri.entity.Cart.userAccount<br/>At Cart.java:[line 51]<br/>At Cart.java:[line 51]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.CartDetail.getCart() may expose internal representation by returning CartDetail.cart<br/>
+                  <br/>
+                  <br/>In file CartDetail.java CartDetail.java,
+					
+						line 46 46<br/>In class lk.agri.entity.CartDetail<br/>In method lk.agri.entity.CartDetail.getCart()<br/>Field lk.agri.entity.CartDetail.cart<br/>At CartDetail.java:[line 46]<br/>At CartDetail.java:[line 46]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.CartDetail.getItem() may expose internal representation by returning CartDetail.item<br/>
+                  <br/>
+                  <br/>In file CartDetail.java CartDetail.java,
+					
+						line 38 38<br/>In class lk.agri.entity.CartDetail<br/>In method lk.agri.entity.CartDetail.getItem()<br/>Field lk.agri.entity.CartDetail.item<br/>At CartDetail.java:[line 38]<br/>At CartDetail.java:[line 38]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.CartDetail.getUserAccount() may expose internal representation by returning CartDetail.userAccount<br/>
+                  <br/>
+                  <br/>In file CartDetail.java CartDetail.java,
+					
+						line 54 54<br/>In class lk.agri.entity.CartDetail<br/>In method lk.agri.entity.CartDetail.getUserAccount()<br/>Field lk.agri.entity.CartDetail.userAccount<br/>At CartDetail.java:[line 54]<br/>At CartDetail.java:[line 54]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.Item.getUserAccount() may expose internal representation by returning Item.userAccount<br/>
+                  <br/>
+                  <br/>In file Item.java Item.java,
+					
+						line 31 31<br/>In class lk.agri.entity.Item<br/>In method lk.agri.entity.Item.getUserAccount()<br/>Field lk.agri.entity.Item.userAccount<br/>At Item.java:[line 31]<br/>At Item.java:[line 31]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.dto.CartDetailDTO.setItem(ItemDTO) may expose internal representation by storing an externally mutable object into CartDetailDTO.item<br/>
+                  <br/>
+                  <br/>In file CartDetailDTO.java CartDetailDTO.java,
+					
+						line 39 39<br/>In class lk.agri.dto.CartDetailDTO<br/>In method lk.agri.dto.CartDetailDTO.setItem(ItemDTO)<br/>Field lk.agri.dto.CartDetailDTO.item<br/>Local variable named item<br/>At CartDetailDTO.java:[line 39]<br/>At CartDetailDTO.java:[line 39]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.dto.ItemDTO.setUserAccount(UserAccount) may expose internal representation by storing an externally mutable object into ItemDTO.userAccount<br/>
+                  <br/>
+                  <br/>In file ItemDTO.java ItemDTO.java,
+					
+						line 33 33<br/>In class lk.agri.dto.ItemDTO<br/>In method lk.agri.dto.ItemDTO.setUserAccount(UserAccount)<br/>Field lk.agri.dto.ItemDTO.userAccount<br/>Local variable named userAccount<br/>At ItemDTO.java:[line 33]<br/>At ItemDTO.java:[line 33]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.Cart.setDelivery(Delivery) may expose internal representation by storing an externally mutable object into Cart.delivery<br/>
+                  <br/>
+                  <br/>In file Cart.java Cart.java,
+					
+						line 47 47<br/>In class lk.agri.entity.Cart<br/>In method lk.agri.entity.Cart.setDelivery(Delivery)<br/>Field lk.agri.entity.Cart.delivery<br/>Local variable named delivery<br/>At Cart.java:[line 47]<br/>At Cart.java:[line 47]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.Cart.setUserAccount(UserAccount) may expose internal representation by storing an externally mutable object into Cart.userAccount<br/>
+                  <br/>
+                  <br/>In file Cart.java Cart.java,
+					
+						line 55 55<br/>In class lk.agri.entity.Cart<br/>In method lk.agri.entity.Cart.setUserAccount(UserAccount)<br/>Field lk.agri.entity.Cart.userAccount<br/>Local variable named userAccount<br/>At Cart.java:[line 55]<br/>At Cart.java:[line 55]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.CartDetail.setCart(Cart) may expose internal representation by storing an externally mutable object into CartDetail.cart<br/>
+                  <br/>
+                  <br/>In file CartDetail.java CartDetail.java,
+					
+						line 50 50<br/>In class lk.agri.entity.CartDetail<br/>In method lk.agri.entity.CartDetail.setCart(Cart)<br/>Field lk.agri.entity.CartDetail.cart<br/>Local variable named cart<br/>At CartDetail.java:[line 50]<br/>At CartDetail.java:[line 50]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.CartDetail.setItem(Item) may expose internal representation by storing an externally mutable object into CartDetail.item<br/>
+                  <br/>
+                  <br/>In file CartDetail.java CartDetail.java,
+					
+						line 42 42<br/>In class lk.agri.entity.CartDetail<br/>In method lk.agri.entity.CartDetail.setItem(Item)<br/>Field lk.agri.entity.CartDetail.item<br/>Local variable named item<br/>At CartDetail.java:[line 42]<br/>At CartDetail.java:[line 42]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.CartDetail.setUserAccount(UserAccount) may expose internal representation by storing an externally mutable object into CartDetail.userAccount<br/>
+                  <br/>
+                  <br/>In file CartDetail.java CartDetail.java,
+					
+						line 58 58<br/>In class lk.agri.entity.CartDetail<br/>In method lk.agri.entity.CartDetail.setUserAccount(UserAccount)<br/>Field lk.agri.entity.CartDetail.userAccount<br/>Local variable named userAccount<br/>At CartDetail.java:[line 58]<br/>At CartDetail.java:[line 58]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>lk.agri.entity.Item.setUserAccount(UserAccount) may expose internal representation by storing an externally mutable object into Item.userAccount<br/>
+                  <br/>
+                  <br/>In file Item.java Item.java,
+					
+						line 35 35<br/>In class lk.agri.entity.Item<br/>In method lk.agri.entity.Item.setUserAccount(UserAccount)<br/>Field lk.agri.entity.Item.userAccount<br/>Local variable named userAccount<br/>At Item.java:[line 35]<br/>At Item.java:[line 35]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h1>
+         <a name="Details">Warning Types</a>
+      </h1>
+      <h2>
+         <a name="EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+      </h2>
+
+  <p> Returning a reference to a mutable object value stored in one of the object's fields
+  exposes the internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Returning a new copy of the object is better approach in many situations.</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+      </h2>
+
+  <p> This code stores a reference to an externally mutable object into the
+  internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Storing a copy of the object is better approach in many situations.</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+   </body>
+</html>
