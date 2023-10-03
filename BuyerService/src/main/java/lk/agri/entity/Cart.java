@@ -62,10 +62,12 @@ public class Cart {
     public Set<CartDetail> getCartDetails() {
         return Collections.unmodifiableSet(cartDetails);
     }
-
+//Null pointer safety
 //    public void setCartDetails(Set<CartDetail> cartDetails) {
 //        this.cartDetails = cartDetails;
 //    }
+
+    //Null pointer safety
     public void setCartDetails(Set<CartDetail> cartDetails) {
         if (cartDetails != null) {
             this.cartDetails.clear(); // Clear the current contents
