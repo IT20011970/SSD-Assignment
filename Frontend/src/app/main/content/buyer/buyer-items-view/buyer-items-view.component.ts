@@ -32,7 +32,12 @@ export class BuyerItemsViewComponent implements OnInit {
     this.buyerS.getItems(this.txt).subscribe(items => {
       console.log(items)
       this.items = items;
-    })
+    }
+      ,(err)=>{
+        // console.log(err)
+        this.router.navigate(['login'])
+        localStorage.clear()
+      })
   }
 
   getImageSrc(itemPackageImage) {

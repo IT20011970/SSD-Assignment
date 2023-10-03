@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   };
   logged = true;
 
-  constructor(private loginService: LoginService, private navBarService: NavbarService, private router: Router) {
+  constructor(private loginService: LoginService, private navBarService: NavbarService, private router: Router,private oAuthS:GoogleAuthService) {
   }
 
   ngOnInit(): void {
@@ -24,10 +24,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loginService.accLogin(this.user).subscribe((user) => {
+      console.log(user)
       localStorage.setItem('user', JSON.stringify(user));
-      if (user !== null && user['accountType'] === 'F') {
+      localStorage.setItem('UserType', user['userToken']);
+      if (user !== null && user['accountType'] === 'farmer') {
         this.router.navigate(['/main/farmer/view_items'])
-      } else if (user['accountType'] === 'B') {
+      } else if (user['accountType'] === 'buyer') {
         this.router.navigate(['/main/buyer/view_items']);
       } else {
         this.logged = false;
@@ -35,6 +37,10 @@ export class LoginComponent implements OnInit {
     }, (err) => {
       this.logged = false;
     })
+  }
+
+  loginGoogle(){
+    this.oAuthS.loginGoogle()
   }
 
 }

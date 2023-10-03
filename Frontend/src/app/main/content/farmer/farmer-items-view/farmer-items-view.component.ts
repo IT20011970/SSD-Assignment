@@ -24,7 +24,12 @@ export class FarmerItemsViewComponent implements OnInit {
     this.farmerS.getItems().subscribe(items => {
       console.log(items)
       this.items = items;
-    })
+    }
+      ,(err)=>{
+        // console.log(err)
+        this.router.navigate(['login'])
+        localStorage.clear()
+      })
   }
 
   setItem(item) {

@@ -7,13 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   getUser(){
-    return JSON.parse(localStorage.getItem('user'));
+    if (this.router.url.includes('farmer')) {
+      return 'farmer'
+    } else if (this.router.url.includes('buyer')) {
+      return 'buyer'
+    }
   }
 
 }
