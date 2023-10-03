@@ -2,6 +2,7 @@ package lk.agri.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class UserAccount {
@@ -13,6 +14,15 @@ public class UserAccount {
     private String contactNo;
     private String password;
     private String token;
+    private Date loggedTime;
+
+    public Date getLoggedTime() {
+        return loggedTime;
+    }
+
+    public void setLoggedTime(Date loggedDate) {
+        this.loggedTime = loggedDate;
+    }
 
     public String getToken() {
         return token;

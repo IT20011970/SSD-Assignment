@@ -5,6 +5,7 @@ import lk.agri.entity.UserAccount;
 import lk.agri.repository.UserAccountRepository;
 import lk.agri.service.UserAccountService;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
 
@@ -34,6 +36,7 @@ public class UserAccountServiceImpl implements UserAccountService {
             UserAccount userObj = userUpdate.get();
             String token=(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1);
             userObj.setToken(token);
+            userObj.setLoggedTime(new Date());
             userAccountRepository.save(userObj);
         }
         return new UserAccountDTO(userAccountObj);

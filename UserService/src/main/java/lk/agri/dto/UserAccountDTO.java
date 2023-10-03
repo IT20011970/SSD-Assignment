@@ -2,6 +2,9 @@ package lk.agri.dto;
 
 import lk.agri.entity.UserAccount;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
+
 public class UserAccountDTO {
     private String accountType;
     private String name;
@@ -10,6 +13,15 @@ public class UserAccountDTO {
     private String email;
     private String password;
     private String token;
+    private Date loggedTime;
+
+    public Date getLoggedTime() {
+        return loggedTime;
+    }
+
+    public void setLoggedTime(Date loggedTime) {
+        this.loggedTime = loggedTime;
+    }
 
     public UserAccountDTO(UserAccount userAccount) {
         if (userAccount != null) {
@@ -19,6 +31,7 @@ public class UserAccountDTO {
             this.contactNo = userAccount.getContactNo();
             this.email = userAccount.getEmail();
             this.token=userAccount.getToken();
+            this.loggedTime = userAccount.getLoggedTime();
         }
 //        this.password = userAccount.getPassword();
     }
