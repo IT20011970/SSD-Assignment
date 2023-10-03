@@ -10,6 +10,9 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  accUser(email): Observable<any> {
+    return this.http.get<any>(environment.backend_url1 + "/user/user/"+email);
+  }
   accLogin(user): Observable<any> {
     return this.http.post<any>(environment.backend_url1 + "/user/login", user);
   }

@@ -32,6 +32,9 @@ export class BuyerItemsViewComponent implements OnInit {
     this.buyerS.getItems(this.txt).subscribe(items => {
       console.log(items)
       this.items = items;
+    },(error) => {
+      console.log('error',error);
+      this.router.navigate(['/']);
     })
   }
 
@@ -54,6 +57,9 @@ export class BuyerItemsViewComponent implements OnInit {
     console.log(item)
     this.buyerS.addToCart(cart).subscribe((itemObj) => {
       item.qty -= item.bQty;
+    },(error) => {
+      console.log('error',error);
+      this.router.navigate(['/']);
     })
   }
 

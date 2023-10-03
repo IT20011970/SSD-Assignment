@@ -1,5 +1,7 @@
 package lk.agri.entity;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collections;
@@ -43,6 +45,7 @@ public class Cart {
         return delivery;
     }
 
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
     }

@@ -19,6 +19,11 @@ public class UserAccountController {
         return ResponseEntity.ok(userAccountService.login(userAccount));
     }
 
+    @GetMapping(value = "/user/{txt}")
+    public ResponseEntity loggedUser(@PathVariable String txt) {
+        return ResponseEntity.ok(userAccountService.loggedUser(txt));
+    }
+
     @PostMapping(value = "/signUp")
     public ResponseEntity signUp(@RequestBody UserAccount userAccount) {
         return ResponseEntity.ok(userAccountService.signUp(userAccount));
