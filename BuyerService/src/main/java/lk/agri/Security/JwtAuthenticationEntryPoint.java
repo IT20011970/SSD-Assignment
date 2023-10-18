@@ -1,4 +1,4 @@
-package lk.agri.security;
+package lk.agri.Security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

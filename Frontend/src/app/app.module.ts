@@ -23,7 +23,7 @@ import { BuyerCartComponent } from './main/content/buyer/buyer-cart/buyer-cart.c
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import {DecimalPipe} from "@angular/common";
 import { ChatComponent } from './main/content/chat/chat.component';
-
+import { OAuthModule } from 'angular-oauth2-oidc';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +50,7 @@ import { ChatComponent } from './main/content/chat/chat.component';
     RouterModule,
     HttpClientModule,
     FormsModule,
+    OAuthModule.forRoot()
   ],
   providers: [DecimalPipe],
   bootstrap: [AppComponent]

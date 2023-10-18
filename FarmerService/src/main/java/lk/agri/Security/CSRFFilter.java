@@ -3,14 +3,11 @@ package lk.agri.Security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lk.agri.entity.UserAccount;
 import lk.agri.repository.UserAccountRepository;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -20,22 +17,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
 @Component
 public class CSRFFilter extends OncePerRequestFilter {
 
-//    @Autowired
-//    private JwtUtil jwtUtil;
-//
-//    @Autowired
-//    private JwtCache jwtCache;
     @Autowired
     private UserAccountRepository userAccountRepository;
+
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException, RuntimeException {
 
@@ -66,8 +57,7 @@ public class CSRFFilter extends OncePerRequestFilter {
                 // Write the JSON error response to the response body
                 httpServletResponse.getWriter().write(jsonResponse);
                 return;
-            }
-            else{
+            } else {
                 if (!httpServletRequest.getRequestURI().startsWith("/farmer/csrf-token")) {
                     if (authorizationHeader == null || !authorizationHeader.equals(userAccountObj.getToken())) {
                         logger.warn("JWT Token does not match expected value or is missing.");
@@ -93,6 +83,26 @@ public class CSRFFilter extends OncePerRequestFilter {
                         return;
                     }
                 }
+            }
+
+            String authorizationHeaderUserType = httpServletRequest.getHeader("UserType");
+
+            if (authorizationHeaderUserType != null) {
+                String decrypt = Encryption.decrypt(authorizationHeaderUserType);
+                JSONParser parser = new JSONParser();
+                try {
+                    JSONObject json = (JSONObject) parser.parse(decrypt);
+                    if (json.get("accType").toString().equals("farmer")) {
+
+                    } else {
+                        throw new RuntimeException("Invalid Token");
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                throw new RuntimeException("No Token");
             }
         }
 

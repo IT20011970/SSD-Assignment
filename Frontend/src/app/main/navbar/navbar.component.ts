@@ -1,4 +1,6 @@
+// @ts-nocheck
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +20,7 @@ export class NavbarComponent implements OnInit {
     } else if (this.router.url.includes('buyer')) {
       return 'buyer'
     }
+    // return JSON.parse(localStorage.getItem('user'));
   }
 
 }

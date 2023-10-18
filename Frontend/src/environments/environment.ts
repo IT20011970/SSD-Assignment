@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  backend_url1: 'http://localhost:8084',
-  backend_url2: 'http://localhost:8083',
-  backend_url3: 'http://localhost:8082',
+  backend_user_service: 'http://localhost:8084',
+  backend_buyer_service: 'http://localhost:8083',
+  backend_farmer_service: 'http://localhost:8082',
   backend_url4: 'http://localhost:8081',
   image_url: 'http://localhost/agri/'
 };
