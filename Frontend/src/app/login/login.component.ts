@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     // })
     this.googleApi.loginGoogle().subscribe((user)=>{
 
-          localStorage.setItem('email', user.email);
+          localStorage.setItem('email', user);
           this.ngOnInit()
     }
     )
