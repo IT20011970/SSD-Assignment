@@ -18,7 +18,7 @@ const authCodeFlowConfig: AuthConfig = {
 
   // The SPA's id. The SPA is registerd with this id at the auth-server
   // clientId: 'server.code',
-  clientId: '1089856297048-repi3v53369raqou6il4ap9d3ru59h64.apps.googleusercontent.com',
+  clientId: '748008346564-hon84taook6557panurkiatb9ff8untf.apps.googleusercontent.com',
 
   // set the scope for the permissions the client should request
   scope: 'openid profile email https://www.googleapis.com/auth/gmail.readonly',
@@ -107,7 +107,7 @@ export class GoogleAuthService {
 
   signOut() {
     this.loginService.accLogout()
-    this.oAuthService.logOut()
+    // this.oAuthService.logOut()
   }
 
   private authHeader(): HttpHeaders {
