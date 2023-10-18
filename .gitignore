@@ -11,6 +11,7 @@
 *.class
 
 # Generated files
+Frontend2/
 bin/
 gen/
 out/

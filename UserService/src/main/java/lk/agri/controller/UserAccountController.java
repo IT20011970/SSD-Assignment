@@ -28,4 +28,9 @@ public class UserAccountController {
     public ResponseEntity signUp(@RequestBody UserAccount userAccount) {
         return ResponseEntity.ok(userAccountService.signUp(userAccount));
     }
+
+    @PostMapping(value = "/login_google")
+    public ResponseEntity loginGoogle(@RequestBody UserAccount userAccount) {
+        return ResponseEntity.ok(userAccountService.loginGoogle(userAccount));
+    }
 }
