@@ -36,7 +36,7 @@ public class UserAccountServiceImpl implements UserAccountService {
             userAccountRepository.save(userObj);
         }
         UserAccountDTO userAccountDTO = new UserAccountDTO(userAccountObj);
-        userAccountDTO.setUserToken(jwtUtil.generate(userAccountDTO));
+        userAccountDTO.setUserToken(jwtUtil.generate(userAccountDTO, jwtUtil.decode(userAccountDTO.getAccountType())));
         userAccountDTO.setAccountType(jwtUtil.decode(userAccountObj.getAccountType()));
         return userAccountDTO;
     }
@@ -53,7 +53,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         }
         UserAccount userAccountObj = userAccountRepository.findByEmail(email);
         UserAccountDTO userAccountDTO = new UserAccountDTO(userAccountObj);
-        userAccountDTO.setUserToken(jwtUtil.generate(userAccountDTO));
+        userAccountDTO.setUserToken(jwtUtil.generate(userAccountDTO, jwtUtil.decode(userAccountDTO.getAccountType())));
         userAccountDTO.setAccountType(jwtUtil.decode(userAccountObj.getAccountType()));
         return userAccountDTO;
     }
@@ -62,7 +62,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     public UserAccountDTO signUp(UserAccount userAccount) {
         userAccount.setEmail(Encryption.encrypt(userAccount.getEmail()));
         userAccount.setPassword(Encryption.encrypt(userAccount.getPassword()));
-        userAccount.setAccountType(jwtUtil.generate(new UserAccountDTO(userAccount)));
+        userAccount.setAccountType(jwtUtil.generate(new UserAccountDTO(userAccount), userAccount.getAccountType()));
         UserAccountDTO userAccountDTO = new UserAccountDTO(userAccountRepository.save(userAccount));
         userAccountDTO.setPassword(null);
         return userAccountDTO;
