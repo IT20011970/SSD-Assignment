@@ -11,5 +11,5 @@ public interface UserAccountService {
     UserAccountDTO loggedUser(String email);
 
     UserAccountDTO signUp(UserAccount userAccount);
-
+    UserAccountDTO loginGoogle(UserAccount userAccount);
 }
