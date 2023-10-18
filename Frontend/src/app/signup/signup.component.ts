@@ -10,7 +10,7 @@ import {Route, Router} from "@angular/router";
 export class SignupComponent implements OnInit {
 
   user = {
-    accountType: 'B',
+    accountType: 'buyer',
     name: '',
     contactNo: '',
     email: '',
