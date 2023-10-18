@@ -76,6 +76,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public UserAccountDTO signUp(UserAccount userAccount) {
         userAccount.setEmail(Encryption.encrypt(userAccount.getEmail()));
+        userAccount.setPassword(Encryption.encrypt(userAccount.getPassword()));
         userAccount.setAccountType(jwtUtil.generate(new UserAccountDTO(userAccount), userAccount.getAccountType()));
         UserAccountDTO userAccountDTO = new UserAccountDTO(userAccountRepository.save(userAccount));
         userAccountDTO.setPassword(null);
