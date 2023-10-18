@@ -1,5 +1,4 @@
 package lk.agri.Security;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lk.agri.entity.UserAccount;
 import lk.agri.repository.UserAccountRepository;
@@ -11,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

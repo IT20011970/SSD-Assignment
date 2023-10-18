@@ -1,5 +1,6 @@
 package lk.agri.controller;
 
+import lk.agri.Security.Encryption;
 import lk.agri.entity.Cart;
 import lk.agri.entity.CartDetail;
 import lk.agri.service.BuyerService;
@@ -29,11 +30,22 @@ public class BuyerController {
     public ResponseEntity addCart(@RequestBody Cart cart) {
         return ResponseEntity.ok(buyerService.addCart(cart));
     }
-
-    @GetMapping(value = "/getCart/{email}")
-    public ResponseEntity getCart(@PathVariable String email) {
-        return ResponseEntity.ok(buyerService.getCart(email));
+    @GetMapping("/getCart")
+    public ResponseEntity getCart(@RequestParam("email") String email) {
+        try {
+            return ResponseEntity.ok(buyerService.getCart(email));
+        } catch (Exception e) {
+            System.out.printf("");
+            return null;
+            // Handle decryption error or other exceptions
+           // return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid email parameter");
+        }
     }
+//    @GetMapping(value = "/getCart?email={email}")
+//    public ResponseEntity getCart(@PathVariable String email) {
+//        System.out.println(email);
+//        return ResponseEntity.ok(buyerService.getCart(Encryption.decrypt(email)));
+//    }
 
     @DeleteMapping(value = "/removeCartDetail/{id}")
     public ResponseEntity removeCartDetail(@PathVariable String id) {

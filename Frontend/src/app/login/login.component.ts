@@ -27,24 +27,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  // googleURL = AppConstants.GOOGLE_AUTH_URL;
-  // login1(){
-  //   // this.googleApi.initializeOAuthService().subscribe((user) => {
-  //   //   console.log(user)
-  //   // })
-  //   this.googleApi.loginGoogle().subscribe((user)=>{
-  //
-  //         localStorage.setItem('email', user);
-  //         this.loginGoogle()
-  //   }
-  //   )
-  // }
-
-  // loginWithGoogle(): void {
-  //   this.oauthService.initLoginFlow();
-  // }
   ngOnInit(): void {
-
 
   }
 

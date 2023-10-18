@@ -60,6 +60,19 @@ public class UserAccountServiceImpl implements UserAccountService {
         return userAccountDTO;
     }
 
+//    @Override
+//    public UserAccount loggedUser(String email) {
+//        Optional<UserAccount> userUpdate= Optional.ofNullable(userAccountRepository.findByEmail(email));
+//        if (userUpdate !=null) {
+//            UserAccount userObj = userUpdate.get();
+//            String token=(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1)+"-"+(new Random().nextInt(10000)+1);
+//            userObj.setToken(token);
+//            userAccountRepository.save(userObj);
+//        }
+//        UserAccount userAccountObj = userAccountRepository.findByEmail(email);
+//        return userAccountObj;
+//    }
+
     @Override
     public UserAccountDTO signUp(UserAccount userAccount) {
         userAccount.setEmail(Encryption.encrypt(userAccount.getEmail()));
