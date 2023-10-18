@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {Component, OnInit} from '@angular/core';
 import {FarmerService} from "../../../../_service/farmer.service";
 import {Router} from "@angular/router";

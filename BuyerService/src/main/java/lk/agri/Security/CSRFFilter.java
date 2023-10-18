@@ -3,6 +3,9 @@ package lk.agri.Security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lk.agri.entity.UserAccount;
 import lk.agri.repository.UserAccountRepository;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -21,13 +24,14 @@ import java.util.Map;
 @Component
 public class CSRFFilter extends OncePerRequestFilter {
 
-//    @Autowired
+    //    @Autowired
 //    private JwtUtil jwtUtil;
 //
 //    @Autowired
 //    private JwtCache jwtCache;
     @Autowired
     private UserAccountRepository userAccountRepository;
+
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException, RuntimeException {
 
@@ -58,8 +62,7 @@ public class CSRFFilter extends OncePerRequestFilter {
                 // Write the JSON error response to the response body
                 httpServletResponse.getWriter().write(jsonResponse);
                 return;
-            }
-            else{
+            } else {
                 if (!httpServletRequest.getRequestURI().startsWith("/farmer/csrf-token")) {
                     if (authorizationHeader == null || !authorizationHeader.equals(userAccountObj.getToken())) {
                         logger.warn("JWT Token does not match expected value or is missing.");
@@ -85,6 +88,26 @@ public class CSRFFilter extends OncePerRequestFilter {
                         return;
                     }
                 }
+            }
+
+            String authorizationHeaderUserType = httpServletRequest.getHeader("UserType");
+
+            if (authorizationHeaderUserType != null) {
+                String decrypt = Encryption.decrypt(authorizationHeaderUserType);
+                JSONParser parser = new JSONParser();
+                try {
+                    JSONObject json = (JSONObject) parser.parse(decrypt);
+                    if (json.get("accType").toString().equals("buyer")) {
+
+                    } else {
+                        throw new RuntimeException("Invalid Token");
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                throw new RuntimeException("No Token");
             }
         }
 

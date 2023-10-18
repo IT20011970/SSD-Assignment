@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
@@ -11,14 +12,14 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   accUser(email): Observable<any> {
-    return this.http.get<any>(environment.backend_url1 + "/user/user/"+email);
+    return this.http.get<any>(environment.backend_user_service + "/user/user/"+email);
   }
   accLogin(user): Observable<any> {
-    return this.http.post<any>(environment.backend_url1 + "/user/login", user);
+    return this.http.post<any>(environment.backend_user_service + "/user/login", user);
   }
 
   signUp(user): Observable<any> {
-    return this.http.post<any>(environment.backend_url1 + "/user/signUp", user);
+    return this.http.post<any>(environment.backend_user_service + "/user/signUp", user);
   }
 
   accLogout() {

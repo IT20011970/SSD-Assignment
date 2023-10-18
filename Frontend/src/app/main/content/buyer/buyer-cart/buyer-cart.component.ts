@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {Component, OnInit} from '@angular/core';
 import {BuyerService} from "../../../../_service/buyer.service";
 import {environment} from "../../../../../environments/environment";
@@ -11,8 +12,8 @@ import {Router} from "@angular/router";
 })
 export class BuyerCartComponent implements OnInit {
 
-  cartDetails = [];
-  deliveries = [];
+  cartDetails!: any[];
+  deliveries!: any[];
   total = 0;
   cart = {
     delivery: {

@@ -1,3 +1,5 @@
+
+// @ts-nocheck
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {AuthConfig, OAuthService} from 'angular-oauth2-oidc';

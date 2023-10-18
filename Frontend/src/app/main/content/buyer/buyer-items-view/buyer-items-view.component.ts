@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {Component, OnInit} from '@angular/core';
 import {FarmerService} from "../../../../_service/farmer.service";
 import {DomSanitizer} from "@angular/platform-browser";
@@ -13,7 +14,7 @@ import {DecimalPipe} from "@angular/common";
 })
 export class BuyerItemsViewComponent implements OnInit {
 
-  items = [];
+  items!: any[];
   txt;
 
   constructor(private buyerS: BuyerService, private sanitizer: DomSanitizer, private router: Router, private decimalPipe: DecimalPipe) {

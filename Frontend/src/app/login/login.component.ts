@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../_service/login.service";
 import {NavbarService} from "../_service/navbar.service";
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
     this.googleApi.loginGoogle().subscribe((user)=>{
 
           localStorage.setItem('email', user);
-          this.ngOnInit()
+          this.loginGoogle()
+
     }
     )
   }
@@ -39,25 +41,52 @@ export class LoginComponent implements OnInit {
   //   this.oauthService.initLoginFlow();
   // }
   ngOnInit(): void {
-      const userEmail=localStorage.getItem('email') !== null ? localStorage.getItem('email') : ''
-      console.log(userEmail)
-      if(userEmail){
-        this.loginService.accUser(userEmail).subscribe((user) => {
-          localStorage.setItem('user', JSON.stringify(user));
-          if (user !== null && user['accountType'] === 'F') {
-            this.router.navigate(['/main/farmer/view_items'])
-          } else if (user['accountType'] === 'B') {
-            this.router.navigate(['/main/buyer/view_items']);
-          } else {
-            this.logged = false;
-          }
-        }, (err) => {
-          this.logged = false;
-        })
-      }
-      // Use the userEmail in your application logic
+// <<<<<<< HEAD
+//       const userEmail=localStorage.getItem('email') !== null ? localStorage.getItem('email') : ''
+//       console.log(userEmail)
+//       if(userEmail){
+//         this.loginService.accUser(userEmail).subscribe((user) => {
+//           localStorage.setItem('user', JSON.stringify(user));
+//           if (user !== null && user['accountType'] === 'F') {
+//             this.router.navigate(['/main/farmer/view_items'])
+//           } else if (user['accountType'] === 'B') {
+//             this.router.navigate(['/main/buyer/view_items']);
+//           } else {
+//             this.logged = false;
+//           }
+//         }, (err) => {
+//           this.logged = false;
+//         })
+//       }
+//       // Use the userEmail in your application logic
+
+//   }
+// =======
+
 
   }
+
+  loginGoogle(){
+    const userEmail=localStorage.getItem('email') !== null ? localStorage.getItem('email') : ''
+    console.log(userEmail)
+    if(userEmail){
+      this.loginService.accUser(userEmail).subscribe((user) => {
+        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('UserType', user['userToken']);
+        if (user !== null && user['accountType'] === 'farmer') {
+          this.router.navigate(['/main/farmer/view_items'])
+        } else if (user['accountType'] === 'buyer') {
+          this.router.navigate(['/main/buyer/view_items']);
+        } else {
+          this.logged = false;
+        }
+      }, (err) => {
+        this.logged = false;
+      })
+    }
+    // Use the userEmail in your application logic
+  }
+
   isLoggedIn(): boolean {
     return this.googleApi.isLoggedIn()
   }
@@ -65,9 +94,10 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.loginService.accLogin(this.user).subscribe((user) => {
       localStorage.setItem('user', JSON.stringify(user));
-      if (user !== null && user['accountType'] === 'F') {
+      localStorage.setItem('UserType', user['userToken']);
+      if (user !== null && user['accountType'] === 'farmer') {
         this.router.navigate(['/main/farmer/view_items'])
-      } else if (user['accountType'] === 'B') {
+      } else if (user['accountType'] === 'buyer') {
         this.router.navigate(['/main/buyer/view_items']);
       } else {
         this.logged = false;

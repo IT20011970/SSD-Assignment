@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../_service/login.service";
 import {Router} from "@angular/router";

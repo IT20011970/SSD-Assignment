@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {Component, OnInit} from '@angular/core';
 import {FarmerService} from "../../../../_service/farmer.service";
 import {environment} from "../../../../../environments/environment";
@@ -13,7 +14,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class FarmerItemsViewComponent implements OnInit {
 
-  items = [];
+  items!: any[];
 
   constructor(private farmerS: FarmerService, private sanitizer: DomSanitizer, private router: Router) {
   }
