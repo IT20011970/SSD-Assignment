@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
     //   console.log(user)
     // })
     this.googleApi.loginGoogle().subscribe((user)=>{
-
           localStorage.setItem('email', user);
           this.loginGoogle()
     }
@@ -40,6 +39,27 @@ export class LoginComponent implements OnInit {
   //   this.oauthService.initLoginFlow();
   // }
   ngOnInit(): void {
+// <<<<<<< HEAD
+//       const userEmail=localStorage.getItem('email') !== null ? localStorage.getItem('email') : ''
+//       console.log(userEmail)
+//       if(userEmail){
+//         this.loginService.accUser(userEmail).subscribe((user) => {
+//           localStorage.setItem('user', JSON.stringify(user));
+//           if (user !== null && user['accountType'] === 'F') {
+//             this.router.navigate(['/main/farmer/view_items'])
+//           } else if (user['accountType'] === 'B') {
+//             this.router.navigate(['/main/buyer/view_items']);
+//           } else {
+//             this.logged = false;
+//           }
+//         }, (err) => {
+//           this.logged = false;
+//         })
+//       }
+//       // Use the userEmail in your application logic
+
+//   }
+// =======
 
 
   }

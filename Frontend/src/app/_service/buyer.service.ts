@@ -40,7 +40,8 @@ export class BuyerService {
       .set('X-CSRF-TOKEN', this.getLocalStorage('user').token) // Replace with your header name and value
       .set('USER', this.getLocalStorage('user').email)
       .set('UserType', this.getLocalStorage('UserType'));
-    return this.http.get<any>(environment.backend_buyer_service + "/buyer/getCart/" + JSON.parse(localStorage.getItem('user')).email, {headers: headersToken});
+    console.log(JSON.parse(localStorage.getItem('user')).email)
+    return this.http.get<any>(environment.backend_buyer_service + "/buyer/getCart?email=" + JSON.parse(localStorage.getItem('user')).email, {headers: headersToken});
   }
 
   addCart(cart) {
