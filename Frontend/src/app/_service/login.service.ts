@@ -14,6 +14,11 @@ export class LoginService {
   accUser(email): Observable<any> {
     return this.http.get<any>(environment.backend_user_service + "/user/user/"+email);
   }
+
+  loginGoogle(user): Observable<any> {
+    return this.http.post<any>(environment.backend_user_service + "/user/login_google", user);
+  }
+
   accLogin(user): Observable<any> {
     return this.http.post<any>(environment.backend_user_service + "/user/login", user);
   }
