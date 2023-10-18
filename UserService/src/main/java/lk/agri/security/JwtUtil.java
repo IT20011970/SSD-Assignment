@@ -15,11 +15,11 @@ public class JwtUtil {
 //    private String secret = "AGGBXYUSBDUY";
 //    private static final long JWT_TOKEN_VALIDITY = 60 * 60 * 18; //18 hours
 
-    public String generate(UserAccountDTO user) {
+    public String generate(UserAccountDTO user,String accType) {
         JSONObject obj = new JSONObject();
 
         obj.put("username", Encryption.decrypt(user.getEmail()));
-        obj.put("accType", decode(user.getAccountType()));
+        obj.put("accType", accType);
         obj.put("timestamp", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
 
         return Encryption.encrypt(obj.toString());
