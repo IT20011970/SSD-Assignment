@@ -29,10 +29,8 @@ export class LoginComponent implements OnInit {
     //   console.log(user)
     // })
     this.googleApi.loginGoogle().subscribe((user)=>{
-
           localStorage.setItem('email', user);
           this.loginGoogle()
-
     }
     )
   }

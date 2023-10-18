@@ -41,7 +41,7 @@ export class BuyerCartComponent implements OnInit {
       }
     },(error) => {
       console.log('error',error);
-      this.router.navigate(['/']);
+      //this.router.navigate(['/']);
     })
   }
 
@@ -78,7 +78,7 @@ export class BuyerCartComponent implements OnInit {
       this.getCart();
     },(error) => {
       console.log('error',error);
-      this.router.navigate(['/']);
+      //this.router.navigate(['/']);
     })
   }
 }
