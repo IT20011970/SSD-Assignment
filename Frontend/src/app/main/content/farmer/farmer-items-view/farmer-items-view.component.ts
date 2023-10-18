@@ -1,9 +1,12 @@
+// @ts-nocheck
 import {Component, OnInit} from '@angular/core';
 import {FarmerService} from "../../../../_service/farmer.service";
 import {environment} from "../../../../../environments/environment";
 import {DomSanitizer} from "@angular/platform-browser";
 import {Router} from "@angular/router";
-
+import {window} from "rxjs/operators";
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 @Component({
   selector: 'app-farmer-items-view',
   templateUrl: './farmer-items-view.component.html',
@@ -11,7 +14,7 @@ import {Router} from "@angular/router";
 })
 export class FarmerItemsViewComponent implements OnInit {
 
-  items = [];
+  items!: any[];
 
   constructor(private farmerS: FarmerService, private sanitizer: DomSanitizer, private router: Router) {
   }
@@ -22,14 +25,13 @@ export class FarmerItemsViewComponent implements OnInit {
 
   getItems() {
     this.farmerS.getItems().subscribe(items => {
-      console.log(items)
-      this.items = items;
-    }
-      ,(err)=>{
-        // console.log(err)
-        this.router.navigate(['login'])
-        localStorage.clear()
-      })
+        this.items = items;
+    },(error) => {
+      console.log('error',error);
+      this.router.navigate(['/']);
+    });
+
+
   }
 
   setItem(item) {

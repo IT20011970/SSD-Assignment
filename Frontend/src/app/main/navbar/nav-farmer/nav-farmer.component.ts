@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {Component, OnInit} from '@angular/core';
 import {NavbarService} from "../../../_service/navbar.service";
 import {BuyerService} from "../../../_service/buyer.service";

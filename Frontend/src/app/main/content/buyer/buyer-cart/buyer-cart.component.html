@@ -27,7 +27,7 @@
 
 <div style="display: flex;justify-content: right;margin-right: 20px;margin-top: 20px;">
   <span style="margin-right: 10px;margin-top: 6px">Select Delivery :</span>
-  <select class="form-control" name="deliveryType" (change)="cart.delivery.deliveryId=$event.target.value"
+  <select class="form-control" name="deliveryType" (change)="cart.delivery.deliveryId=$any($event.target).value"
           style="width: 100px;margin-right: 20px">
     <option [value]="delivery.deliveryId" *ngFor="let delivery of deliveries">{{delivery.name}}</option>
   </select>

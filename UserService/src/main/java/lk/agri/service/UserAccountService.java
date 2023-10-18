@@ -5,7 +5,7 @@ import lk.agri.entity.UserAccount;
 
 public interface UserAccountService {
     UserAccountDTO login(UserAccount userAccount);
-
+    UserAccountDTO loggedUser(String email);
     UserAccountDTO signUp(UserAccount userAccount);
 
 }

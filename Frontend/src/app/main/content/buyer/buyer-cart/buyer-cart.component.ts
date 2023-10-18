@@ -1,7 +1,9 @@
+// @ts-nocheck
 import {Component, OnInit} from '@angular/core';
 import {BuyerService} from "../../../../_service/buyer.service";
 import {environment} from "../../../../../environments/environment";
 import {DomSanitizer} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-buyer-cart',
@@ -10,8 +12,8 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class BuyerCartComponent implements OnInit {
 
-  cartDetails = [];
-  deliveries = [];
+  cartDetails!: any[];
+  deliveries!: any[];
   total = 0;
   cart = {
     delivery: {
@@ -20,7 +22,7 @@ export class BuyerCartComponent implements OnInit {
     payId: ''
   };
 
-  constructor(private buyerS: BuyerService, private sanitizer: DomSanitizer) {
+  constructor(private buyerS: BuyerService, private sanitizer: DomSanitizer,private router: Router) {
   }
 
   ngOnInit(): void {
@@ -37,6 +39,9 @@ export class BuyerCartComponent implements OnInit {
           this.total += (item.quantity * (item.item.price / 1000));
         })
       }
+    },(error) => {
+      console.log('error',error);
+      this.router.navigate(['/']);
     })
   }
 
@@ -71,6 +76,9 @@ export class BuyerCartComponent implements OnInit {
       // this.cartDetails.splice(cartDetail, 1)
       // console.log(this.cartDetails)
       this.getCart();
+    },(error) => {
+      console.log('error',error);
+      this.router.navigate(['/']);
     })
   }
 }

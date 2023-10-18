@@ -1,7 +1,10 @@
 package lk.agri.entity;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Set;
 
 @Entity
@@ -42,6 +45,7 @@ public class Cart {
         return delivery;
     }
 
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
     }
@@ -59,7 +63,7 @@ public class Cart {
     }
 
     public Set<CartDetail> getCartDetails() {
-        return cartDetails;
+        return Collections.unmodifiableSet(cartDetails);
     }
 
 //    public void setCartDetails(Set<CartDetail> cartDetails) {

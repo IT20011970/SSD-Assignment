@@ -21,32 +21,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests().antMatchers( "/**").permitAll();//test
-
-//        http
-//                .csrf()
-//                .csrfTokenRepository(csrfTokenRepository()) // Use the CsrfTokenRepository you defined
-//                .and()
-//                // Other security configurations (e.g., authentication, authorization) go here
-//                .authorizeRequests()
-//                .antMatchers("/farmer/csrf-token").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .permitAll();
-//        http
-//                .authorizeRequests()
-//                // Secure all endpoints except "/public/your-unsecured-endpoint"
-//                    .antMatchers("/farmer/csrf-token").permitAll()
-//                    .anyRequest().authenticated();
-//                .and()
-//                .httpBasic()
-//                .and()
-//                .csrf()
-//                     .csrfTokenRepository(csrfTokenRepository());
         http.addFilterBefore(csrfFilter, BasicAuthenticationFilter.class);
 
     }

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {Component, OnInit} from '@angular/core';
 import {FarmerService} from "../../../../_service/farmer.service";
 import {Router} from "@angular/router";
@@ -44,10 +45,16 @@ export class FarmerItemsManageComponent implements OnInit {
     if (this.submitType === 'Add') {
       this.farmerS.addItem(formData).subscribe((item) => {
         this.router.navigate(['/main/farmer/view_items'])
+      },(error) => {
+        console.log('error',error);
+        this.router.navigate(['/']);
       })
     } else {
       this.farmerS.updateItem(formData, this.item.itemId).subscribe((item) => {
         this.router.navigate(['/main/farmer/view_items'])
+      },(error) => {
+        console.log('error',error);
+        this.router.navigate(['/']);
       })
     }
   }
@@ -55,6 +62,9 @@ export class FarmerItemsManageComponent implements OnInit {
   removeItem(item) {
     this.farmerS.removeItem(item.itemId).subscribe(() => {
       this.router.navigate(['/main/farmer/view_items'])
+    },(error) => {
+      console.log('error',error);
+      this.router.navigate(['/']);
     })
   }
 

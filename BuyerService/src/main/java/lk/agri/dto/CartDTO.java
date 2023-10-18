@@ -47,10 +47,17 @@ public class CartDTO {
     public void setPurchased(boolean purchased) {
         this.purchased = purchased;
     }
+//Information Disclosure Vulnerability
+//    public List<CartDetailDTO> getCartDetails() {
+//        return cartDetails;
+//    }
 
     public List<CartDetailDTO> getCartDetails() {
         return new ArrayList<>(cartDetails);
     }
+    //Immutability and data encapsulation
+//
+//    public void setCartDetails(List<CartDetailDTO> cartDetails) { this.cartDetails = cartDetails; }
 
     public void setCartDetails(List<CartDetailDTO> cartDetails) {
         this.cartDetails = new ArrayList<>(cartDetails);

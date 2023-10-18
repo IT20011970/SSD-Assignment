@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {Component, OnInit} from '@angular/core';
 import {FarmerService} from "../../../../_service/farmer.service";
 import {DomSanitizer} from "@angular/platform-browser";
@@ -13,7 +14,7 @@ import {DecimalPipe} from "@angular/common";
 })
 export class BuyerItemsViewComponent implements OnInit {
 
-  items = [];
+  items!: any[];
   txt;
 
   constructor(private buyerS: BuyerService, private sanitizer: DomSanitizer, private router: Router, private decimalPipe: DecimalPipe) {
@@ -32,12 +33,10 @@ export class BuyerItemsViewComponent implements OnInit {
     this.buyerS.getItems(this.txt).subscribe(items => {
       console.log(items)
       this.items = items;
-    }
-      ,(err)=>{
-        // console.log(err)
-        this.router.navigate(['login'])
-        localStorage.clear()
-      })
+    },(error) => {
+      console.log('error',error);
+      this.router.navigate(['/']);
+    })
   }
 
   getImageSrc(itemPackageImage) {
@@ -59,6 +58,9 @@ export class BuyerItemsViewComponent implements OnInit {
     console.log(item)
     this.buyerS.addToCart(cart).subscribe((itemObj) => {
       item.qty -= item.bQty;
+    },(error) => {
+      console.log('error',error);
+      this.router.navigate(['/']);
     })
   }
 

@@ -6,6 +6,8 @@ import lk.agri.entity.Item;
 import lk.agri.entity.UserAccount;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CartDTO {
@@ -48,10 +50,10 @@ public class CartDTO {
     }
 
     public List<CartDetailDTO> getCartDetails() {
-        return cartDetails;
+        return Collections.unmodifiableList(cartDetails);
     }
 
     public void setCartDetails(List<CartDetailDTO> cartDetails) {
-        this.cartDetails = cartDetails;
+        this.cartDetails = new ArrayList<>(cartDetails);
     }
 }

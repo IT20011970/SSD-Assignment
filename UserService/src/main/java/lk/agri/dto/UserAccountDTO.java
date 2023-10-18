@@ -10,6 +10,7 @@ public class UserAccountDTO {
     private String email;
     private String password;
     private String token;
+    private String userToken;
 
     public UserAccountDTO(UserAccount userAccount) {
         if (userAccount != null) {
@@ -75,7 +76,17 @@ public class UserAccountDTO {
         return password;
     }
 
+    public String getUserToken() {
+        return userToken;
+    }
+
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }
