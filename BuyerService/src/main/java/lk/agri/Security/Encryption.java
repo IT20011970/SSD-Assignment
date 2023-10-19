@@ -6,7 +6,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.Base64;
+//import java.util.Base64;
+import org.apache.commons.codec.binary.Base64;
 
 
 public class Encryption {
@@ -33,8 +34,9 @@ public class Encryption {
             setKey(secretText);
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            return Base64.getEncoder()
-                    .encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+            return Base64.encodeBase64URLSafeString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+//            return Base64.getEncoder()
+//                    .encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
         } catch (Exception e) {
             System.out.println("Error while encrypting: " + e.toString());
         }
@@ -46,8 +48,9 @@ public class Encryption {
             setKey(secretText);
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            return new String(cipher.doFinal(Base64.getDecoder()
-                    .decode(strToDecrypt)));
+            return new String(cipher.doFinal(Base64.decodeBase64(strToDecrypt)));
+//            return new String(cipher.doFinal(Base64.getDecoder()
+//                    .decode(strToDecrypt)));
         } catch (Exception e) {
             System.out.println("Error while decrypting: " + e.toString());
         }

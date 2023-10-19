@@ -96,6 +96,7 @@ public class UserAccountServiceImpl implements UserAccountService {
             UserAccount userObj = userUpdate.get();
             String token = (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1);
             userObj.setToken(token);
+            userObj.setLoggedTime(new Date());
             UserAccount userAccountObj = userAccountRepository.save(userObj);
 
             UserAccountDTO userAccountDTO = new UserAccountDTO(userAccountObj);

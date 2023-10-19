@@ -95,11 +95,10 @@ public class CSRFFilter extends OncePerRequestFilter {
                     if (!json.get("accType").toString().equals("farmer")) {
                         throw new RuntimeException("Invalid Token");
                     }
-//                    System.out.println(httpServletRequest.getRequestURI().startsWith("/farmer/getItems"));
-//                    System.out.println(json.get("username").toString());
+                    String[] urlVals = httpServletRequest.getRequestURI().split("/");
                     if (httpServletRequest.getRequestURI().startsWith("/farmer/getItems")) {
-                        if (!httpServletRequest.getRequestURI().contains(Encryption.encrypt(json.get("username").toString()))) {
-                            throw new RuntimeException("Invalid Token");
+                        if (!Encryption.decrypt(urlVals[urlVals.length - 1]).contains(json.get("username").toString())) {
+                            throw new RuntimeException("Invalid Token Email");
                         }
                     }
                 } catch (ParseException e) {

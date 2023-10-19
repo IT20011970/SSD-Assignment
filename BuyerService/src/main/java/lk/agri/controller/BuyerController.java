@@ -30,23 +30,23 @@ public class BuyerController {
     public ResponseEntity addCart(@RequestBody Cart cart) {
         return ResponseEntity.ok(buyerService.addCart(cart));
     }
-
-    @GetMapping("/getCart")
-    public ResponseEntity getCart(@RequestParam("email") String email) {
-        try {
-            return ResponseEntity.ok(buyerService.getCart(email));
-        } catch (Exception e) {
-            System.out.printf("");
-            return null;
-            // Handle decryption error or other exceptions
-           // return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid email parameter");
-        }
-    }
-//    @GetMapping(value = "/getCart?email={email}")
-//    public ResponseEntity getCart(@PathVariable String email) {
-//        System.out.println(email);
-//        return ResponseEntity.ok(buyerService.getCart(Encryption.decrypt(email)));
+//    @GetMapping("/getCart")
+//    public ResponseEntity getCart(@RequestParam("email") String email) {
+//        System.out.printf(email);
+//        try {
+//            return ResponseEntity.ok(buyerService.getCart(email));
+//        } catch (Exception e) {
+//
+//            return null;
+//            // Handle decryption error or other exceptions
+//           // return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid email parameter");
+//        }
 //    }
+    @GetMapping(value = "/getCart/{email}")
+    public ResponseEntity getCart(@PathVariable String email) {
+        System.out.println(email);
+        return ResponseEntity.ok(buyerService.getCart(email));
+    }
 
     @DeleteMapping(value = "/removeCartDetail/{id}")
     public ResponseEntity removeCartDetail(@PathVariable String id) {
