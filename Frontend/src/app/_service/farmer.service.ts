@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { TokenTimeoutService } from './token-timeout.service';
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root',
