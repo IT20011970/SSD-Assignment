@@ -1,4 +1,5 @@
 package lk.agri.Security;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lk.agri.entity.UserAccount;
 import lk.agri.repository.UserAccountRepository;
@@ -10,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -90,10 +92,15 @@ public class CSRFFilter extends OncePerRequestFilter {
                 JSONParser parser = new JSONParser();
                 try {
                     JSONObject json = (JSONObject) parser.parse(decrypt);
-                    if (json.get("accType").toString().equals("farmer")) {
-
-                    } else {
+                    if (!json.get("accType").toString().equals("farmer")) {
                         throw new RuntimeException("Invalid Token");
+                    }
+//                    System.out.println(httpServletRequest.getRequestURI().startsWith("/farmer/getItems"));
+//                    System.out.println(json.get("username").toString());
+                    if (httpServletRequest.getRequestURI().startsWith("/farmer/getItems")) {
+                        if (!httpServletRequest.getRequestURI().contains(Encryption.encrypt(json.get("username").toString()))) {
+                            throw new RuntimeException("Invalid Token");
+                        }
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();

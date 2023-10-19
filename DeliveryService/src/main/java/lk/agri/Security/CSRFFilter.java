@@ -92,9 +92,7 @@ public class CSRFFilter extends OncePerRequestFilter {
                 JSONParser parser = new JSONParser();
                 try {
                     JSONObject json = (JSONObject) parser.parse(decrypt);
-                    if (json.get("accType").toString().equals("buyer")) {
-
-                    } else {
+                    if (!json.get("accType").toString().equals("buyer")) {
                         throw new RuntimeException("Invalid Token");
                     }
                 } catch (ParseException e) {
