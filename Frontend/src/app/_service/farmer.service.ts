@@ -1,18 +1,17 @@
 // @ts-nocheck
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {environment} from "../../environments/environment";
-import {Router} from "@angular/router";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { TokenTimeoutService } from './token-timeout.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FarmerService {
-
   item;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private tokenTimeoutService: TokenTimeoutService) {
   }
 
   addItem(item): Observable<any> {
@@ -40,6 +39,10 @@ export class FarmerService {
   }
 
   getItems(): Observable<any> {
+    if (this.tokenTimeoutService.checkTimeout()) {
+      return;
+    }
+
     // Make the GET request with the custom headers
     const headersToken = new HttpHeaders()
       .set('X-CSRF-TOKEN', this.getLocalStorage('user').token) // Replace with your header name and value
