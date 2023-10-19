@@ -2,6 +2,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FarmerService} from "../../../../_service/farmer.service";
 import {Router} from "@angular/router";
+import {LoginService} from "../../../../_service/login.service";
 
 @Component({
   selector: 'app-farmer-items-manage',
@@ -20,6 +21,12 @@ export class FarmerItemsManageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.farmerS.chkToken().subscribe(() => {
+
+    }, (err) => {
+      this.router.navigate(['/']);
+      localStorage.clear();
+    })
     if (this.farmerS.item !== undefined) {
       this.item = this.farmerS.item;
       this.submitType = 'Update';
@@ -45,16 +52,18 @@ export class FarmerItemsManageComponent implements OnInit {
     if (this.submitType === 'Add') {
       this.farmerS.addItem(formData).subscribe((item) => {
         this.router.navigate(['/main/farmer/view_items'])
-      },(error) => {
-        console.log('error',error);
+      }, (error) => {
+        console.log('error', error);
         this.router.navigate(['/']);
+        localStorage.clear();
       })
     } else {
       this.farmerS.updateItem(formData, this.item.itemId).subscribe((item) => {
         this.router.navigate(['/main/farmer/view_items'])
-      },(error) => {
-        console.log('error',error);
+      }, (error) => {
+        console.log('error', error);
         this.router.navigate(['/']);
+        localStorage.clear();
       })
     }
   }
@@ -62,9 +71,10 @@ export class FarmerItemsManageComponent implements OnInit {
   removeItem(item) {
     this.farmerS.removeItem(item.itemId).subscribe(() => {
       this.router.navigate(['/main/farmer/view_items'])
-    },(error) => {
-      console.log('error',error);
+    }, (error) => {
+      console.log('error', error);
       this.router.navigate(['/']);
+      localStorage.clear();
     })
   }
 

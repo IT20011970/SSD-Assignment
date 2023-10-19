@@ -30,6 +30,7 @@ public class BuyerController {
     public ResponseEntity addCart(@RequestBody Cart cart) {
         return ResponseEntity.ok(buyerService.addCart(cart));
     }
+
     @GetMapping("/getCart")
     public ResponseEntity getCart(@RequestParam("email") String email) {
         try {

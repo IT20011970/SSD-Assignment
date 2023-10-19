@@ -14,6 +14,11 @@ public class UserAccountController {
     @Autowired
     private UserAccountService userAccountService;
 
+    @GetMapping(value = "/chkToken/{email}")
+    public ResponseEntity chkToken(@PathVariable String email) {
+        return ResponseEntity.ok(userAccountService.loggedUser(email));
+    }
+
     @PostMapping(value = "/login")
     public ResponseEntity login(@RequestBody UserAccount userAccount) {
         return ResponseEntity.ok(userAccountService.login(userAccount));

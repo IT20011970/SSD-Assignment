@@ -1,6 +1,8 @@
 package lk.agri.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Item {
@@ -25,14 +27,6 @@ public class Item {
         this.qty = qty;
         this.userAccount = new UserAccount();
         this.userAccount.setEmail(email);
-    }
-
-    public UserAccount getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
     }
 
     public String getItemId() {
@@ -83,4 +77,11 @@ public class Item {
         this.qty = qty;
     }
 
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
 }
