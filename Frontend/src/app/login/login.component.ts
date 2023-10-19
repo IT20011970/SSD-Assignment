@@ -11,13 +11,12 @@ import {GoogleAuthService} from "../_service/google-auth.service";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   user = {
     email: '',
-    password: ''
+    password: '',
   };
   logged = true;
 
@@ -71,9 +70,6 @@ export class LoginComponent implements OnInit {
       } else {
         this.logged = false;
       }
-    }, (err) => {
-      this.logged = false;
-    })
+    });
   }
-
 }
