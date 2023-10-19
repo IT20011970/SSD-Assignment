@@ -41,7 +41,7 @@ export class BuyerService {
       .set('USER', this.getLocalStorage('user').email)
       .set('UserType', this.getLocalStorage('UserType'));
     console.log(JSON.parse(localStorage.getItem('user')).email)
-    return this.http.get<any>(environment.backend_buyer_service + "/buyer/getCart?email=" + JSON.parse(localStorage.getItem('user')).email, {headers: headersToken});
+    return this.http.get<any>(environment.backend_buyer_service + "/buyer/getCart/" + JSON.parse(localStorage.getItem('user')).email, {headers: headersToken});
   }
 
   addCart(cart) {
