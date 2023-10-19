@@ -1,13 +1,15 @@
 package lk.agri.Security;
 
+import org.apache.commons.codec.binary.Base64;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+
 //import java.util.Base64;
-import org.apache.commons.codec.binary.Base64;
 
 
 public class Encryption {

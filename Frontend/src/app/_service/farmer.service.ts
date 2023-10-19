@@ -69,6 +69,14 @@ export class FarmerService {
     return this.http.get<any>(environment.backend_farmer_service + "/farmer/getchat", {headers: headersToken});
   }
 
+  chkToken(): Observable<any> {
+    const headersToken = new HttpHeaders()
+      .set('X-CSRF-TOKEN', this.getLocalStorage('user').token) // Replace with your header name and value
+      .set('USER', this.getLocalStorage('user').email)
+      .set('UserType', this.getLocalStorage('UserType'));
+    return this.http.get<any>(environment.backend_farmer_service + "/farmer/chkToken/" + this.getLocalStorage('user').email, {headers: headersToken});
+  }
+
   //================================
 
   getLocalStorage(tokenTtype) {

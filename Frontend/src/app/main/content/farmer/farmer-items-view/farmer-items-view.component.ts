@@ -29,6 +29,7 @@ export class FarmerItemsViewComponent implements OnInit {
     },(error) => {
       console.log('error',error);
       this.router.navigate(['/']);
+      localStorage.clear();
     });
 
 

@@ -45,19 +45,21 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public UserAccountDTO loggedUser(String email) {
-        email = Encryption.encrypt(email);
+//        email = Encryption.encrypt(email);
         Optional<UserAccount> userUpdate = Optional.ofNullable(userAccountRepository.findByEmail(email));
         if (userUpdate != null) {
-            UserAccount userObj = userUpdate.get();
-            String token = (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1);
-            userObj.setToken(token);
-            userAccountRepository.save(userObj);
+            UserAccount userAccountObj = userUpdate.get();
+//            String token = (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1);
+//            userObj.setToken(token);
+//            UserAccount userAccountObj = userAccountRepository.save(userObj);
+
+            UserAccountDTO userAccountDTO = new UserAccountDTO(userAccountObj);
+            userAccountDTO.setUserToken(jwtUtil.generate(userAccountDTO, jwtUtil.decode(userAccountDTO.getAccountType())));
+            userAccountDTO.setAccountType(jwtUtil.decode(userAccountObj.getAccountType()));
+            return userAccountDTO;
         }
-        UserAccount userAccountObj = userAccountRepository.findByEmail(email);
-        UserAccountDTO userAccountDTO = new UserAccountDTO(userAccountObj);
-        userAccountDTO.setUserToken(jwtUtil.generate(userAccountDTO, jwtUtil.decode(userAccountDTO.getAccountType())));
-        userAccountDTO.setAccountType(jwtUtil.decode(userAccountObj.getAccountType()));
-        return userAccountDTO;
+//        UserAccount userAccountObj = userAccountRepository.findByEmail(email);
+        return null;
     }
 
 //    @Override

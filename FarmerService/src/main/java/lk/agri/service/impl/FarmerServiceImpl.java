@@ -2,6 +2,7 @@ package lk.agri.service.impl;
 
 import lk.agri.dto.ItemDTO;
 import lk.agri.dto.CartDTO;
+import lk.agri.dto.UserAccountDTO;
 import lk.agri.entity.Chat;
 import lk.agri.entity.Item;
 import lk.agri.entity.CartDetail;
@@ -116,5 +117,23 @@ public class FarmerServiceImpl implements FarmerService {
         return true;
     }
 
+    @Override
+    public UserAccountDTO loggedUser(String email) {
+//        email = Encryption.encrypt(email);
+//        Optional<UserAccount> userUpdate = Optional.ofNullable(userAccountRepository.findByEmail(email));
+//        if (userUpdate != null) {
+//            UserAccount userAccountObj = userUpdate.get();
+////            String token = (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1) + "-" + (new Random().nextInt(10000) + 1);
+////            userObj.setToken(token);
+////            UserAccount userAccountObj = userAccountRepository.save(userObj);
+//
+//            UserAccountDTO userAccountDTO = new UserAccountDTO(userAccountObj);
+//            userAccountDTO.setUserToken(jwtUtil.generate(userAccountDTO, jwtUtil.decode(userAccountDTO.getAccountType())));
+//            userAccountDTO.setAccountType(jwtUtil.decode(userAccountObj.getAccountType()));
+//            return userAccountDTO;
+//        }
+//        UserAccount userAccountObj = userAccountRepository.findByEmail(email);
+        return null;
+    }
 
 }

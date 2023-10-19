@@ -20,6 +20,11 @@ public class FarmerController {
     @Autowired
     private FarmerService itemService;
 
+    @GetMapping(value = "/chkToken/{email}")
+    public ResponseEntity chkToken(@PathVariable String email) {
+        return ResponseEntity.ok(itemService.loggedUser(email));
+    }
+
     @GetMapping(value="/csrf-token")
     public String getCsrfToken() {
 //        System.out.println(token);

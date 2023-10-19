@@ -41,13 +41,18 @@ export class BuyerCartComponent implements OnInit {
       }
     },(error) => {
       console.log('error',error);
-      //this.router.navigate(['/']);
+      this.router.navigate(['/']);
+      localStorage.clear();
     })
   }
 
   getDeliveries() {
     this.buyerS.getDeliveries().subscribe((deliveries) => {
       this.deliveries = deliveries;
+    },(error) => {
+      console.log('error',error);
+      this.router.navigate(['/']);
+      localStorage.clear();
     })
   }
 
@@ -78,7 +83,8 @@ export class BuyerCartComponent implements OnInit {
       this.getCart();
     },(error) => {
       console.log('error',error);
-      //this.router.navigate(['/']);
+      this.router.navigate(['/']);
+      localStorage.clear();
     })
   }
 }

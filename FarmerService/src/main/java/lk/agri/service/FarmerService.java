@@ -2,6 +2,7 @@ package lk.agri.service;
 
 import lk.agri.dto.ItemDTO;
 import lk.agri.dto.CartDTO;
+import lk.agri.dto.UserAccountDTO;
 import lk.agri.entity.Chat;
 import lk.agri.entity.Item;
 import lk.agri.entity.CartDetail;
@@ -21,4 +22,5 @@ public interface FarmerService {
     public Chat addChat(Chat chat);
     public List<Chat> getChat();
     boolean removeItem(String id);
+    UserAccountDTO loggedUser(String email);
 }
