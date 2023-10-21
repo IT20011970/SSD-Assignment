@@ -37,27 +37,4 @@ public class JwtUtil {
         return null;
     }
 
-//    public int getSeurityCode(String token) {
-//        Claims body = getBody(token);
-//        return Integer.parseInt(body.get("securityKey").toString());
-//    }
-//
-//    private Claims getBody(String token) {
-//        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-//    }
-
-
-//    public boolean validateToken(String accountType, HttpServletRequest httpServletRequest) {
-//
-//        boolean rollIdentified = false;
-//        if (httpServletRequest.getRequestURI().matches("^(/)[a-z_]+(/)[a-z_]+(/farmer/).+$") && accountType.equals("farmer")) {
-//            rollIdentified = true;
-//        } else if (httpServletRequest.getRequestURI().matches("^(/)[a-z_]+(/)[a-z_]+(/buyer/).+$") && (accountType.equals("buyer"))) {
-//            rollIdentified = true;
-//        } else if (httpServletRequest.getRequestURI().matches("^(/)[a-z_]+(/)[a-z_]+(/delivery/).+$") && (accountType.equals("delivery"))) {
-//            rollIdentified = true;
-//        }
-//        return rollIdentified;
-////        return user.getUserId().equals(userDetails.getUserId()) && user.getSecurityKey() == userDetails.getSecurityKey();
-//    }
 }
